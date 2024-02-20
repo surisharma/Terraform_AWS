@@ -34,4 +34,14 @@ variable "health_check_path" {
 variable "ecs_cluster_name" {
   description = "Name of the ecs cluster"
   default = production
-}   
+} 
+# Logs retention
+varibable "log_retention_in_days" {
+  description = "Log retention period"
+  default = 30
+}
+# key pair
+variable "ssh_pubkey_file" {
+  description = "Path to an SSH public key"
+  default = "/path/fornia-region-key-pair.pub"
+}
