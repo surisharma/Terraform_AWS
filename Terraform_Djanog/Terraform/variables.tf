@@ -36,7 +36,7 @@ variable "ecs_cluster_name" {
   default = production
 } 
 # Logs retention
-varibable "log_retention_in_days" {
+variable "log_retention_in_days" {
   description = "Log retention period"
   default = 30
 }
