@@ -8,7 +8,6 @@ resource "aws_launch_configuration" "ecs" {
   key_name                      = aws_key_pair.production.key_name
   iam_instance_profile          = aws_iam_instance_profile.ecs.name
   security_groups               = [aws_security_group.ecs.id]
-  iam_instance_profile          = aws_iam_instance_profile.ecs.name
   associate_public_ip_address   = true
   user_data                     = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.default.name} > /etc/ecs/ecs.config"
 }
