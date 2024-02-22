@@ -96,14 +96,14 @@ resource "aws_route" "nat-gw-route" {
 }
 
 # Internet Gateway for the public subnet
-resource "aws_internet_gateway" "produciton-igw" {
-    vpc_id = aws_vpc.produciton-vpc_id
+resource "aws_internet_gateway" "production-igw" {
+    vpc_id = aws_vpc.production-vpc_id
 }
 
 # Route the public subnet traffic through the Internet Gateway
 resource "aws_route" "public-internet-igw-route" {
     route_table_id = aws_route_table.public-route_table_id
-    gateway_id = aws_internet_gateway.produciton-igw.id
+    gateway_id = aws_internet_gateway.production-igw.id
     destination_cidr_block = "0.0.0.0"
 }
 
