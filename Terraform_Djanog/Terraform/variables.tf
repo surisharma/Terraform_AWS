@@ -33,7 +33,7 @@ variable "health_check_path" {
 # ecs-django
 variable "ecs_cluster_name" {
   description = "Name of the ecs cluster"
-  default = production
+  default = "production"
 } 
 # Logs retention
 variable "log_retention_in_days" {
