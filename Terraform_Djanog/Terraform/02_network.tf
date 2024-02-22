@@ -97,7 +97,7 @@ resource "aws_route" "nat-gw-route" {
 
 # Internet Gateway for the public subnet
 resource "aws_internet_gateway" "production-igw" {
-    vpc_id = aws_vpc.production-vpc_id
+    vpc_id = aws_vpc.production-vpc.id
 }
 
 # Route the public subnet traffic through the Internet Gateway
