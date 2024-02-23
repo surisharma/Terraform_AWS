@@ -5,7 +5,7 @@ resource "aws_iam_role" "ecs-host-role" {
 resource "aws_iam_role_policy" "ecs-instance-role-policy" {
   name               = "ecs_instance_role_policy"
   assume_role_policy = file("/policies/ecs-instance-role-policy.json")
-  role = aws_iam_role.ecs_host_role.id
+  role = aws_iam_role.ecs-host-role.id
 }
 resource "aws_iam_role" "ecs-service-role" {
     name = "ecs_service_role_prod"
