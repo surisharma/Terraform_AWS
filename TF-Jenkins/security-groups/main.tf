@@ -2,10 +2,18 @@ variable "ec2_sg_name" {}
 variable "vpc_id" {}
 variable "ec2_jenkins_sg_name" {}
 
+output "sg_ec2_sg_ssh_http_id" {
+    value = aws_security_group.ec2_sg_ssh_http
+}
+
+output "sg_ec2_jenkins_port_8080" {
+    value = aws_security_group.ec2_jenkins_port_8080.id
+}
+
 resource "aws_security_group" "ec2_sg_ssh_http" {
     name            =  var.ec2_sg_name
     description     = "Enable the Port 22(SSH) & Port 80(HTTP)"
-    vpc_id          = var.vpc_id
+    vpc_id          =  var.vpc_id
     # ssh for terraform remote exec
     ingress {
         description = "Allow remote SSH from anywhere"
