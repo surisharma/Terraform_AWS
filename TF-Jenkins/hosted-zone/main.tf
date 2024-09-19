@@ -5,7 +5,7 @@ output "hosted_zone_id" {
     value = data.aws_route53_zone.dev_proj_1_lalitbainsla_co_in.zone_id
 }
 data "aws_route53_zone" "dev_proj_1_lalitbainsla_co_in" {
-  name         = var.domain_name
+  name         = "lalitbainsla.co.in"
   private_zone = false
 }
 resource "aws_route53_record" "lb_record" {

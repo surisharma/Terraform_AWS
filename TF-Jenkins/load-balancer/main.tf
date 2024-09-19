@@ -22,7 +22,7 @@ resource "aws_lb" "dev_proj_1_lb" {
   name               = var.lb_name
   internal           = var.is_external
   load_balancer_type = var.lb_type
-  security_groups    = var.sg_enable_ssh_https
+  security_groups    = [var.sg_enable_ssh_https]
   subnets            = var.subnet_ids
   enable_deletion_protection = false
   tags = {
@@ -30,7 +30,7 @@ resource "aws_lb" "dev_proj_1_lb" {
   }
 }
 resource "aws_lb_target_group_attachment" "dev_proj_1_lb_target_group_attachment" {
-  target_group_arn = aws_lb_target_group.dev_proj_1_lb_target_group_arn.arn
+  target_group_arn = var.lb_target_group_arn
   target_id        = var.ec2_instance_id
   port             = var.lb_target_group_attachment_port
 }
