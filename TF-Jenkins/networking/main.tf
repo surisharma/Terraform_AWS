@@ -13,6 +13,9 @@ output "dev_proj_1_public_subnets" {
 output "public_subnet_cidr_block" {
     value = aws_subnet.dev_proj_1_public_subnets.*.cidr_block
 }
+loacl {
+environment = "dev-proj-1"
+}
 
 # Setup VPC
 resource "aws_vpc" "dev_proj_1_vpc_us_east_2" {
@@ -33,7 +36,7 @@ resource "aws_subnet" "dev_proj_1_public_subnets" {
   availability_zone  = element(var.us_availability_zone, count.index)
 
   tags = {
-    Name = "dev_proj_1_public_subnet-${count.index+1}"
+    Name = "${local.environment}_public_subnet-${count.index+1}"
   }
 }
 # Setup Private Subnet
@@ -44,7 +47,7 @@ resource "aws_subnet" "dev_proj_1_private_subnets" {
    availability_zone  = element(var.us_availability_zone, count.index)
 
    tags = {
-    Name = "dev_proj_1_private_subnet-${count.index+1}"
+    Name = "${local.environment}_private_subnet-${count.index+1}"
    } 
 }
 # Setup Internet Gateway
@@ -52,7 +55,7 @@ resource "aws_internet_gateway" "dev_proj_1_public_internet_gateway" {
   vpc_id = aws_vpc.dev_proj_1_vpc_us_east_2.id
 
   tags = {
-    Name = "dev-proj-1-igw"
+    Name = "${local.environment}-igw"
   }
 }
 
@@ -66,7 +69,7 @@ resource "aws_route_table" "dev_proj_1_public_route_table" {
   }
 
   tags = {
-    Name = "dev-proj-1-public-rt"
+    Name = "${local.environment}-public-rt"
   }
 }
 
@@ -82,7 +85,7 @@ resource "aws_route_table" "dev_proj_1_private_route_table" {
   vpc_id = aws_vpc.dev_proj_1_vpc_us_east_2.id
 
   tags = {
-    Name = "dev-proj-1-private-rt"
+    Name = "${local.environment}-private-rt"
   }
 }
 # Setup Private Route Table and Private Subnet Association
